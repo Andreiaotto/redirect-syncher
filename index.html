@@ -3,14 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Redirecting to Syncher...</title>
-    <meta http-equiv="refresh" content="0; url=https://trackher-etcsd9g5aband4en.germanywestcentral-01.azurewebsites.net">
-    <script>
-        window.location.href = "https://trackher-etcsd9g5aband4en.germanywestcentral-01.azurewebsites.net";
-    </script>
+    <title>Syncher</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+        }
+        iframe {
+            width: 100%;
+            height: 100vh;
+            border: none;
+            display: block;
+        }
+        .loading {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: Arial, sans-serif;
+            color: #666;
+        }
+    </style>
 </head>
 <body>
-    <p>Redirecting to Syncher...</p>
-    <p>If you are not redirected automatically, <a href="https://trackher-etcsd9g5aband4en.germanywestcentral-01.azurewebsites.net">click here</a>.</p>
+    <div class="loading">Loading Syncher...</div>
+    <iframe src="https://trackher-etcsd9g5aband4en.germanywestcentral-01.azurewebsites.net" 
+            onload="document.querySelector('.loading').style.display='none'">
+    </iframe>
 </body>
 </html>
