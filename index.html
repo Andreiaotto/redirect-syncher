@@ -17,20 +17,64 @@
             border: none;
             display: block;
         }
-        .loading {
+        .auth-notice {
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
             font-family: Arial, sans-serif;
             color: #666;
+            text-align: center;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            display: none;
+        }
+        .auth-button {
+            background: #4285f4;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
         }
     </style>
 </head>
 <body>
-    <div class="loading">Loading Syncher...</div>
-    <iframe src="https://trackher-etcsd9g5aband4en.germanywestcentral-01.azurewebsites.net" 
-            onload="document.querySelector('.loading').style.display='none'">
+    <div class="auth-notice" id="authNotice">
+        <h3>Authentication Required</h3>
+        <p>Please log in to access Syncher</p>
+        <button class="auth-button" onclick="openAuth()">Log In with Google</button>
+    </div>
+    
+    <iframe id="appFrame" 
+            src="https://trackher-etcsd9g5aband4en.germanywestcentral-01.azurewebsites.net" 
+            onload="checkAuth()">
     </iframe>
+
+    <script>
+        function checkAuth() {
+            const iframe = document.getElementById('appFrame');
+            const authNotice = document.getElementById('authNotice');
+            
+            // Check if iframe shows authentication error
+            try {
+                iframe.contentWindow.location.href;
+            } catch (e) {
+                // If we can't access iframe content, might be auth issue
+                setTimeout(() => {
+                    authNotice.style.display = 'block';
+                }, 2000);
+            }
+        }
+        
+        function openAuth() {
+            // Open authentication in new window
+            window.open('https://trackher-etcsd9g5aband4en.germanywestcentral-01.azurewebsites.net', '_blank');
+        }
+    </script>
 </body>
 </html>
